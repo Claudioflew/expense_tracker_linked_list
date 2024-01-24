@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.27"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Lab1_ExpenseTrackerLinkedList",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Lab1_ExpenseTrackerLinkedList::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Lab1_ExpenseTrackerLinkedList-Debug-8000e331c6f09a62537d.json",
+					"name" : "Lab1_ExpenseTrackerLinkedList",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/claudio/Desktop/School/CS/LMC/COMSC210_DataStructure/Lab_Assignments/Lab1_ExpenseTrackerLinkedList/cmake-build-debug",
+		"source" : "/Users/claudio/Desktop/School/CS/LMC/COMSC210_DataStructure/Lab_Assignments/Lab1_ExpenseTrackerLinkedList"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
