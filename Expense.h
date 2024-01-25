@@ -24,16 +24,17 @@ public:
     double getAmount() const;
     Expense* getNext() const;
 
+    // Need this overloaded op as we want to sort Expense entries in chronological order
     bool operator<(const Expense&) const;
 
     void display() const;
 
 private:
-    int month;
-    int day;
-    int year;
-    std::string item;
-    double amount;
+    int month{1};
+    int day{1};
+    int year{2000};
+    std::string item{"item"};
+    double amount{10.00};
 
     Expense* next;
 };

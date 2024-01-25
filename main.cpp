@@ -1,13 +1,19 @@
 #include <iostream>
+#include <fstream>
 #include <sstream>
+#include "Expense.h"
 #include "ExpenseLinkedList.h"
+
 
 using namespace std;
 
+void readInitialData(string&, ExpenseLinkedList&);
 int chooseMenu();
 
 int main() {
     ExpenseLinkedList list;
+    string filePath = "/Users/claudio/Desktop/School/CS/LMC/COMSC210_DataStructure/Lab_Assignments/Lab1_ExpenseTrackerLinkedList/InitialData.txt";
+    readInitialData(filePath, list);
 
     int choice = chooseMenu();
     while (choice != 5) {
@@ -35,4 +41,23 @@ int chooseMenu() {
         cout << "Invalid entry.. Please enter a valid number: ";
     }
     return choice;
+}
+
+void readInitialData(string& filePath, ExpenseLinkedList& list) {
+    fstream inputFile(filePath, ios::in);
+
+    if (inputFile.is_open()) {
+        int month, day, year;
+        string item;
+        double amount;
+
+        inputFile >> month;
+        while (!inputFile.eof()) {
+            inputFile >> day >> year >> item >> amount;
+            Expense* expensePtr = new Expense(month, day, year, item, amount);
+            list.insert(expensePtr);
+            inputFile >> month;
+        }
+    }
+    inputFile.close();
 }

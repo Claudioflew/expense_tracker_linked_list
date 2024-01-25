@@ -8,8 +8,10 @@
 class ExpenseLinkedList {
 public:
     ExpenseLinkedList();
+    ~ExpenseLinkedList();
 
     void insertExpense();
+    void insert(Expense*);
     void searchExpense() const;
     void deleteExpense();
     void displayAll() const;
@@ -17,6 +19,7 @@ public:
 private:
     Expense* head;
 
+    // Helper functions
     Expense* makeExpensePtr();
     bool isEmpty() const;
     bool isOnlyOne() const;

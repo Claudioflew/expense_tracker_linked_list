@@ -4,9 +4,22 @@ using namespace std;
 
 ExpenseLinkedList::ExpenseLinkedList() : head{nullptr} {}
 
+// We have to delete an object in the heap
+ExpenseLinkedList::~ExpenseLinkedList() {
+    Expense* curr = head;
+    while (curr != nullptr) {
+        Expense* next = curr->getNext();
+        delete curr;
+        curr = next;
+    }
+}
+
 void ExpenseLinkedList::insertExpense() {
     Expense* expensePtr = makeExpensePtr();
+    insert(expensePtr);
+}
 
+void ExpenseLinkedList::insert(Expense* expensePtr) {
     if (isEmpty()) {
         head = expensePtr;
         cout << "\nItem inserted!" << endl;
@@ -24,6 +37,7 @@ void ExpenseLinkedList::insertExpense() {
         }
     }
 
+    // Two pointers should be used to insert an element in linked list
     Expense* prev = head;
     Expense* curr = head->getNext();
     while (curr != nullptr) {
@@ -53,6 +67,7 @@ void ExpenseLinkedList::searchExpense() const {
         cout << "Invalid entry.. Please enter a floating number: ";
     }
 
+    // To search one pointer is sufficient
     Expense* curr = head;
     while (curr != nullptr) {
         if (curr->getAmount() == amount) {
@@ -81,6 +96,7 @@ void ExpenseLinkedList::deleteExpense() {
         cout << "Invalid entry.. Please enter a floating number: ";
     }
 
+    // Need two pointers to delete an element in linked list
     Expense* prev = nullptr;
     Expense* curr = head;
     while(curr != nullptr) {
