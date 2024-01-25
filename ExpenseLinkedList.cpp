@@ -20,33 +20,24 @@ void ExpenseLinkedList::insertExpense() {
 }
 
 void ExpenseLinkedList::insert(Expense* expensePtr) {
-    if (isEmpty()) {
+    // In case of inserting at the front
+    if (isEmpty() || *head < *expensePtr) {
+        Expense* temp = head;
         head = expensePtr;
-        cout << "\nItem inserted!" << endl;
-        expensePtr->display();
-        return;
-    }
-    if (isOnlyOne()) {
-        if (*expensePtr < *head) {
-            head->setNext(expensePtr);
-            return;
-        } else {
-            expensePtr->setNext(head);
-            head = expensePtr;
-            return;
-        }
-    }
+        expensePtr->setNext(temp);
 
-    // Two pointers should be used to insert an element in linked list
-    Expense* prev = head;
-    Expense* curr = head->getNext();
-    while (curr != nullptr) {
-        if (*curr < *expensePtr) break;
-        prev = curr;
-        curr = curr->getNext();
+    } else {
+        // Two pointers should be used to insert an element in linked list
+        Expense* prev = head;
+        Expense* curr = head->getNext();
+        while (curr != nullptr) {
+            if (*curr < *expensePtr) break;
+            prev = curr;
+            curr = curr->getNext();
+        }
+        expensePtr->setNext(curr);
+        prev->setNext(expensePtr);
     }
-    expensePtr->setNext(curr);
-    prev->setNext(expensePtr);
     cout << "\nItem inserted!" << endl;
     expensePtr->display();
 }
