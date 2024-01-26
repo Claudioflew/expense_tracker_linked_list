@@ -2,7 +2,10 @@
 
 using namespace std;
 
-ExpenseLinkedList::ExpenseLinkedList() : head{nullptr} {}
+ExpenseLinkedList::ExpenseLinkedList() {
+    string item = "item";
+    head = new Expense(1, 1, 2000, item, 10.00);
+}
 
 // We have to delete an object in the heap
 ExpenseLinkedList::~ExpenseLinkedList() {
@@ -20,14 +23,9 @@ void ExpenseLinkedList::insertExpense() {
 }
 
 void ExpenseLinkedList::insert(Expense* expensePtr) {
-    // In case of inserting at the front
-    if (isEmpty() || *head < *expensePtr) {
-        Expense* temp = head;
-        head = expensePtr;
-        expensePtr->setNext(temp);
-
+    if (isEmpty()) {
+        head->setNext(expensePtr);
     } else {
-        // Two pointers should be used to insert an element in linked list
         Expense* prev = head;
         Expense* curr = head->getNext();
         while (curr != nullptr) {
@@ -59,7 +57,7 @@ void ExpenseLinkedList::searchExpense() const {
     }
 
     // To search one pointer is sufficient
-    Expense* curr = head;
+    Expense* curr = head->getNext();
     while (curr != nullptr) {
         if (curr->getAmount() == amount) {
             cout << "\nFound item:" << endl;
@@ -88,8 +86,8 @@ void ExpenseLinkedList::deleteExpense() {
     }
 
     // Need two pointers to delete an element in linked list
-    Expense* prev = nullptr;
-    Expense* curr = head;
+    Expense* prev = head;
+    Expense* curr = head->getNext();
     while(curr != nullptr) {
         if (curr->getAmount() == amount) {
             prev->setNext(curr->getNext());
@@ -110,7 +108,7 @@ void ExpenseLinkedList::displayAll() const {
         return;
     }
 
-    Expense* curr = head;
+    Expense* curr = head->getNext();
     while (curr != nullptr) {
         curr->display();
         curr = curr->getNext();
@@ -160,11 +158,6 @@ Expense* ExpenseLinkedList::makeExpensePtr() {
 }
 
 bool ExpenseLinkedList::isEmpty() const {
-    if (head == nullptr) return true;
-    return false;
-}
-
-bool ExpenseLinkedList::isOnlyOne() const {
     if (head->getNext() == nullptr) return true;
     return false;
 }
